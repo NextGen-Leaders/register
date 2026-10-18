@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#b91575">
+  <title>Inscription — Les quatre Masters de la FSAC</title>
+  <link rel="icon" href="assets/img/favicon.ico">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-strip" aria-label="Logos des quatre Masters et de la FSAC">
+      <a class="brand-logo" href="https://fsac.univh2c.ma/front/index.html" target="_blank" rel="noopener" aria-label="Master ICOA">
+        <img src="assets/img/icoa.logo.png" alt="Logo ICOA" onerror="this.parentElement.classList.add('logo-missing')"><span>ICOA</span>
+      </a>
+      <a class="brand-logo ssb-brand" href="https://masterssb3rd.github.io/MasterSSB/" target="_blank" rel="noopener" aria-label="Visiter le site du Master SSB">
+        <img src="assets/img/ssb.logo.png" alt="Logo SSB" onerror="this.parentElement.classList.add('logo-missing')"><span>SSB</span>
+      </a>
+      <a class="brand-logo fsac-brand" href="https://fsac.univh2c.ma/front/index.html" target="_blank" rel="noopener" aria-label="Faculté des Sciences Aïn Chock">
+        <img src="assets/img/fsac.logo.jpg" alt="Logo FSAC">
+      </a>
+      <a class="brand-logo" href="https://fsac.univh2c.ma/front/index.html" target="_blank" rel="noopener" aria-label="Master SBQ">
+        <img src="assets/img/sbq.logo.png" alt="Logo SBQ" onerror="this.parentElement.classList.add('logo-missing')"><span>SBQ</span>
+      </a>
+      <a class="brand-logo" href="https://fsac.univh2c.ma/front/index.html" target="_blank" rel="noopener" aria-label="Master EMGBR">
+        <img src="assets/img/emgbr.logo.png" alt="Logo EMGBR" onerror="this.parentElement.classList.add('logo-missing')"><span>EMGBR</span>
+      </a>
+    </div>
+    <div class="header-actions">
+      <button type="button" id="lang-toggle" class="small-button" aria-label="Switch language">EN</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-orb orb-one"></div><div class="hero-orb orb-two"></div>
+    <div class="hero-content">
+      <p class="eyebrow">UNIVERSITÉ HASSAN II DE CASABLANCA · FSAC</p>
+      <h1 data-fr="Inscription aux conférences" data-en="Conference registration">Inscription aux conférences</h1>
+      <p class="hero-subtitle" data-fr="Un espace commun pour les quatre Masters de la Faculté des Sciences Aïn Chock" data-en="A shared registration space for the four Master's programmes at the Faculty of Sciences Aïn Chock">Un espace commun pour les quatre Masters de la Faculté des Sciences Aïn Chock</p>
+    </div>
+  </section>
+
+  <main class="main-content">
+    <section class="intro-card">
+      <div class="intro-icon">✦</div>
+      <div>
+        <h2 data-fr="Bienvenue" data-en="Welcome">Bienvenue</h2>
+        <p data-fr="Sélectionnez la conférence à laquelle vous souhaitez participer. Les inscriptions sont disponibles uniquement pour les conférences ouvertes." data-en="Choose the conference you would like to attend. Registration is available only for conferences that are currently open.">Sélectionnez la conférence à laquelle vous souhaitez participer. Les inscriptions sont disponibles uniquement pour les conférences ouvertes.</p>
+      </div>
+    </section>
+
+    <section class="registration-card" id="registration-section">
+      <div class="section-heading">
+        <span class="section-kicker">INSCRIPTION</span>
+        <h2 data-fr="Formulaire d'inscription" data-en="Registration form">Formulaire d'inscription</h2>
+        <p data-fr="Les champs marqués d'un astérisque sont obligatoires." data-en="Fields marked with an asterisk are required.">Les champs marqués d'un astérisque sont obligatoires.</p>
+      </div>
+
+      <div id="loading-state" class="notice">Chargement des conférences…</div>
+      <div id="closed-state" class="closed-state" hidden>
+        <div class="closed-symbol">×</div>
+        <h3 data-fr="Les inscriptions aux conférences sont fermées" data-en="Conference registration is closed">Les inscriptions aux conférences sont fermées</h3>
+        <p data-fr="Veuillez contacter les administrateurs pour plus d'informations." data-en="Please contact the administrators for more information.">Veuillez contacter les administrateurs pour plus d'informations.</p>
+        <a class="contact-link" href="mailto:ssb3rd@gmail.com">ssb3rd@gmail.com</a>
+      </div>
+
+      <form id="registration-form" hidden novalidate>
+        <div class="field full-width">
+          <label for="conference" data-fr="Conférence choisie *" data-en="Choose a conference *">Conférence choisie *</label>
+          <select id="conference" name="conference" required>
+            <option value="">Sélectionner une conférence…</option>
+          </select>
+          <small class="field-error" id="error-conference"></small>
+        </div>
+        <div id="conference-details" class="conference-details" hidden></div>
+        <div id="conference-closed-state" class="notice warning" hidden>
+          <strong data-fr="Cette conférence est fermée." data-en="This conference is closed.">Cette conférence est fermée.</strong>
+          <span data-fr="Veuillez choisir une autre conférence ouverte." data-en="Please choose another open conference.">Veuillez choisir une autre conférence ouverte.</span>
+        </div>
+
+        <div id="applicant-fields">
+          <div class="form-grid">
+            <div class="field">
+              <label for="firstName" data-fr="Prénom *" data-en="First name *">Prénom *</label>
+              <input id="firstName" name="firstName" autocomplete="given-name" required>
+              <small class="field-error" id="error-firstName"></small>
+            </div>
+            <div class="field">
+              <label for="familyName" data-fr="Nom *" data-en="Family name *">Nom *</label>
+              <input id="familyName" name="familyName" autocomplete="family-name" required>
+              <small class="field-error" id="error-familyName"></small>
+            </div>
+            <div class="field">
+              <label for="email" data-fr="Adresse e-mail *" data-en="Email address *">Adresse e-mail *</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+              <small class="field-error" id="error-email"></small>
+            </div>
+            <div class="field">
+              <label for="phone" data-fr="Téléphone (facultatif)" data-en="Phone (optional)">Téléphone (facultatif)</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="niveau" data-fr="Niveau d'études *" data-en="Study level *">Niveau d'études *</label>
+              <select id="niveau" name="niveau" required><option value="">Sélectionner…</option></select>
+              <small class="field-error" id="error-niveau"></small>
+            </div>
+            <div class="field">
+              <label for="filiere" data-fr="Filière / Formation *" data-en="Field / Programme *">Filière / Formation *</label>
+              <select id="filiere" name="filiere" required><option value="">Sélectionner…</option></select>
+              <small class="field-error" id="error-filiere"></small>
+            </div>
+            <div class="field full-width">
+              <label for="cne" data-fr="CNE / Code étudiant *" data-en="CNE / Student ID *">CNE / Code étudiant *</label>
+              <input id="cne" name="cne" required autocomplete="off">
+              <small class="field-error" id="error-cne"></small>
+            </div>
+          </div>
+          <div id="form-error" class="notice error" role="alert" hidden></div>
+          <button type="submit" id="submit-button" class="submit-button">
+            <span data-fr="Envoyer l'inscription" data-en="Submit registration">Envoyer l'inscription</span><span aria-hidden="true">→</span>
+          </button>
+          <p class="privacy-note" data-fr="Vos informations seront transmises à l'équipe organisatrice pour gérer votre inscription." data-en="Your information will be sent to the organizing team to manage your registration.">Vos informations seront transmises à l'équipe organisatrice pour gérer votre inscription.</p>
+        </div>
+      </form>
+
+      <div id="success-state" class="success-state" hidden>
+        <div class="success-symbol">✓</div>
+        <h3 data-fr="Inscription enregistrée !" data-en="Registration submitted!">Inscription enregistrée !</h3>
+        <p data-fr="Votre inscription a bien été transmise. Merci." data-en="Your registration has been received. Thank you.">Votre inscription a bien été transmise. Merci.</p>
+        <button type="button" id="register-another" class="outline-button" data-fr="Inscrire une autre personne" data-en="Register another person">Inscrire une autre personne</button>
+      </div>
+    </section>
+
+    <p class="coordinator">
+      <span class="coordinator-mark">✦</span>
+      <span data-fr="Coordonné par" data-en="Coordinated by">Coordonné par</span> <strong>Pr. JAZOULI Mohammed</strong>
+      <span class="coordinator-email">· <a href="mailto:mohammed.jazouli@univh2c.ma">mohammed.jazouli@univh2c.ma</a></span>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">FSAC <span>·</span> Université Hassan II de Casablanca</div>
+    <a href="mailto:ssb3rd@gmail.com">Contact administrateurs : ssb3rd@gmail.com</a>
+    <a href="admin/index.html" class="admin-link footer-admin-link">Espace administrateur</a>
+  </footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/register.js"></script>
+</body>
+</html>

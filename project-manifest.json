@@ -1,0 +1,22 @@
+{
+  "project": "FSAC Four Masters Registration",
+  "files": [
+    "index.html",
+    "assets/css/style.css",
+    "assets/js/config.js",
+    "assets/js/api.js",
+    "assets/js/register.js",
+    "assets/js/admin-login.js",
+    "assets/js/admin-dashboard.js",
+    "admin/index.html",
+    "admin/dashboard.html",
+    "apps-script/Code.gs",
+    "README.md"
+  ],
+  "logo_files_to_add": [
+    "icoa.logo.png",
+    "ssb.logo.png",
+    "sbq.logo.png",
+    "emgbr.logo.png"
+  ]
+}

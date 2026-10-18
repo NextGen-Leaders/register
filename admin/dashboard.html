@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tableau de bord — FSAC</title><link rel="stylesheet" href="../assets/css/style.css"></head>
+<body>
+<header class="site-header"><div class="brand-strip">
+  <a class="brand-logo" href="../index.html"><img src="../assets/img/icoa.logo.png" alt="ICOA" onerror="this.parentElement.classList.add('logo-missing')"><span>ICOA</span></a>
+  <a class="brand-logo" href="https://masterssb3rd.github.io/MasterSSB/" target="_blank" rel="noopener"><img src="../assets/img/ssb.logo.png" alt="SSB" onerror="this.parentElement.classList.add('logo-missing')"><span>SSB</span></a>
+  <a class="brand-logo fsac-brand" href="../index.html"><img src="../assets/img/fsac.logo.jpg" alt="FSAC"></a>
+  <a class="brand-logo" href="../index.html"><img src="../assets/img/sbq.logo.png" alt="SBQ" onerror="this.parentElement.classList.add('logo-missing')"><span>SBQ</span></a>
+  <a class="brand-logo" href="../index.html"><img src="../assets/img/emgbr.logo.png" alt="EMGBR" onerror="this.parentElement.classList.add('logo-missing')"><span>EMGBR</span></a>
+</div></header>
+<main class="admin-page">
+  <div class="admin-top"><div><p class="section-kicker">GESTION DES ÉVÉNEMENTS</p><h1>Tableau de bord</h1><p>Gérez l'ouverture des inscriptions et les conférences.</p></div><div class="admin-actions"><a class="admin-button secondary" href="../index.html" style="text-decoration:none">Voir le site</a><button id="refresh-button" class="admin-button secondary">Actualiser</button><button id="logout-button" class="admin-button danger">Déconnexion</button></div></div>
+  <div id="dash-error" class="notice error" hidden></div>
+  <section class="admin-card"><div class="status-row"><div><h2 style="margin-bottom:5px">État général des inscriptions</h2><p class="muted" style="margin:0">Ce réglage active ou désactive toutes les inscriptions publiques.</p></div><label class="toggle"><input type="checkbox" id="global-open"><span id="global-status" class="status-pill closed">Fermées</span></label></div></section>
+  <section class="admin-card"><h2>Ajouter une conférence</h2><form id="conference-form" class="admin-form">
+    <div class="field"><label for="conference-name">Titre de la conférence *</label><input id="conference-name" required maxlength="180" placeholder="Ex. Conférence scientifique"></div>
+    <div class="field"><label for="conference-date">Date / heure (facultatif)</label><input id="conference-date" placeholder="Ex. Mardi 27 octobre 2026 · 15h00"></div>
+    <div class="field full-width"><label for="conference-description">Description (facultatif)</label><textarea id="conference-description" maxlength="1000" placeholder="Lieu, intervenant, thème…"></textarea></div>
+    <div class="field full-width"><label class="toggle"><input id="new-conference-open" type="checkbox" checked><span>Ouvrir les inscriptions pour cette conférence</span></label></div>
+    <div class="field full-width"><button class="admin-button" id="add-conference-button" type="submit">+ Ajouter la conférence</button></div>
+  </form></section>
+  <section class="admin-card"><h2>Conférences existantes</h2><div id="conference-list" class="conference-list"><p class="muted">Chargement…</p></div></section>
+  <section class="admin-card" id="members-card">
+    <div class="status-row member-heading"><div><h2 style="margin-bottom:5px">Liste des participants</h2><p class="muted" style="margin:0">Recherchez, modifiez les informations et marquez la présence, y compris pour les personnes ajoutées manuellement.</p></div><button id="show-member-form" class="admin-button">+ Ajouter un participant</button></div>
+    <div class="member-search-row"><label class="search-field" for="member-search"><span aria-hidden="true">⌕</span><input id="member-search" type="search" placeholder="Rechercher par prénom, nom ou e-mail…" autocomplete="off"></label><span id="registration-count" class="status-pill open">0 participant</span></div>
+    <form id="member-form" class="admin-form member-form" hidden>
+      <div class="member-form-heading"><h3 id="member-form-title">Ajouter un participant manuellement</h3><p class="muted">Les champs prénom et nom sont obligatoires. Vous pouvez ajouter une personne même si les inscriptions publiques sont fermées.</p></div>
+      <input type="hidden" id="member-row-number">
+      <div class="field"><label for="member-first-name">Prénom *</label><input id="member-first-name" required maxlength="120"></div>
+      <div class="field"><label for="member-family-name">Nom *</label><input id="member-family-name" required maxlength="120"></div>
+      <div class="field"><label for="member-email">E-mail</label><input id="member-email" type="email" maxlength="180"></div>
+      <div class="field"><label for="member-phone">Téléphone</label><input id="member-phone" type="tel" maxlength="40"></div>
+      <div class="field"><label for="member-conference">Conférence</label><select id="member-conference"><option value="">Aucune conférence précisée</option></select></div>
+      <div class="field"><label for="member-niveau">Niveau d'étude</label><input id="member-niveau" maxlength="100" placeholder="Ex. Master 1"></div>
+      <div class="field"><label for="member-filiere">Filière</label><input id="member-filiere" maxlength="180"></div>
+      <div class="field"><label for="member-cne">CNE</label><input id="member-cne" maxlength="80"></div>
+      <div class="field full-width member-form-actions"><button id="save-member-button" class="admin-button" type="submit">Enregistrer le participant</button><button id="cancel-member-form" class="admin-button secondary" type="button">Annuler</button></div>
+    </form>
+    <div class="admin-table-wrap" style="margin-top:18px"><table><thead><tr><th>Date d'ajout</th><th>Conférence</th><th>Prénom</th><th>Nom</th><th>E-mail</th><th>Téléphone</th><th>Niveau</th><th>Filière</th><th>CNE</th><th>Présence</th><th>Actions</th></tr></thead><tbody id="registration-rows"></tbody></table></div>
+    <p id="no-members-results" class="muted" hidden>Aucun participant ne correspond à cette recherche.</p>
+  </section>
+</main>
+<script src="../assets/js/config.js"></script><script src="../assets/js/api.js"></script><script src="../assets/js/admin-dashboard.js"></script>
+</body></html>
